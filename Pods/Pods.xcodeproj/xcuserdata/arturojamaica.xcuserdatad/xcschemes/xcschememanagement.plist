@@ -4,7 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KYDrawerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ParseUI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2DA860F1A08FD10DD89624C44B8762C1</key>
+		<key>036F49D26469CBBD675DC705D44D4A57</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7897F7EB51D449C91BF212FE60D77FF</key>
+		<key>57996CE6C1E42AB03CB99910A105E22F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8BE7DCBEB6B044DC2ABA27BA79C2A761</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A043C695C6F66F4FEAA9FBFD49525253</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C0DD14B7B40BA182D527A7E2841C20D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E7D7E0D17C6DA06EEC15D57A01B085E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

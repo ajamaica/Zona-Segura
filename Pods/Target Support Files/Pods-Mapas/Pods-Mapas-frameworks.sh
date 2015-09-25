@@ -82,8 +82,16 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Mapas/Bolts.framework"
   install_framework "Pods-Mapas/KYDrawerController.framework"
+  install_framework "Pods-Mapas/MBProgressHUD.framework"
+  install_framework "Pods-Mapas/Parse.framework"
+  install_framework "Pods-Mapas/ParseUI.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Mapas/Bolts.framework"
   install_framework "Pods-Mapas/KYDrawerController.framework"
+  install_framework "Pods-Mapas/MBProgressHUD.framework"
+  install_framework "Pods-Mapas/Parse.framework"
+  install_framework "Pods-Mapas/ParseUI.framework"
 fi

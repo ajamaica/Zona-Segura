@@ -49,9 +49,14 @@
 
 #import "KMLViewerViewController.h"
 @import KYDrawerController;
+#import <Parse/Parse.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "EstadoTableViewController.h"
 
 @implementation KMLViewerViewController{
     NSArray *overlays;
+    int siguiente;
+    PFObject *siguientepf;
 }
 
 - (void)viewDidLoad
@@ -126,31 +131,62 @@
 
 - (void)mapTapped:(UITapGestureRecognizer *)recognizer
 {
-    //[self performSegueWithIdentifier:@"mapa" sender:nil];
+    //;
     
     MKMapView *mapView = (MKMapView *)recognizer.view;
-    id<MKOverlay> tappedOverlay = nil;
+    if (recognizer.state != UIGestureRecognizerStateEnded)
+        return;
+    
+    CGPoint touchPoint = [recognizer locationInView:mapView];
+    CLLocationCoordinate2D touchMapCoordinate =
+    [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
+    
+    
     int i = 0;
-    for (id<MKOverlay> overlay in mapView.overlays)
-    {
-        MKOverlayView *view = [mapView viewForOverlay:overlay];
-        if (view)
-        {
-            // Get view frame rect in the mapView's coordinate system
-            CGRect viewFrameInMapView = [view.superview convertRect:view.frame toView:mapView];
-            // Get touch point in the mapView's coordinate system
-            CGPoint point = [recognizer locationInView:mapView];
-            // Check if the touch is within the view bounds
-            if (CGRectContainsPoint(viewFrameInMapView, point))
-            {
-                i++;
-                tappedOverlay = overlay;
-                break;
-            }
+    for (id <MKOverlay> overlay in overlays) {
+        MKPolygonView *overlayView = [kmlParser viewForOverlay:overlay];
+        if([self coordInPolygon:touchMapCoordinate and:overlayView]){
+            break;
         }
+        i++;
     }
-    int index = [overlays indexOfObject:tappedOverlay];
-    NSLog(@"Tapped view: %@", [mapView viewForOverlay:tappedOverlay]);
+    
+    if(i == 32){
+        return;
+    }
+    
+
+
+    
+    
+    siguiente = i;
+    NSLog(@"%d",i);
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFQuery *query = [PFQuery queryWithClassName:@"Delincuencia"];
+    [query whereKey:@"Id" equalTo:@(siguiente)];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (!error) {
+            siguientepf = object;
+            [self performSegueWithIdentifier:@"tabla" sender:nil];
+            
+        }else{
+            
+        }
+    }];
+    
+
+    
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"tabla"]){
+        EstadoTableViewController *vc = [segue destinationViewController];
+        vc.estado = siguientepf; 
+    }
 }
 
 
@@ -180,6 +216,18 @@
 
 #pragma mark MKMapViewDelegate
 
+-(BOOL)coordInPolygon:(CLLocationCoordinate2D)coord and:(MKPolygonView *) polygonRenderer {
+    
+    MKMapPoint mapPoint = MKMapPointForCoordinate(coord);
+    return [self pointInPolygon:mapPoint and:polygonRenderer];
+}
+
+-(BOOL)pointInPolygon:(MKMapPoint)mapPoint and:(MKPolygonView *) polygonRenderer {
+    
+    CGPoint polygonViewPoint = [polygonRenderer pointForMapPoint:mapPoint];
+    return CGPathContainsPoint(polygonRenderer.path, NULL, polygonViewPoint, NO);
+}
+
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     
@@ -188,7 +236,6 @@
     {
         MKPolygonView *overlayView = [kmlParser viewForOverlay:overlay];
         
-        NSLog(@"%@",[self hexStringFromColor:overlayView.fillColor]);
         
         NSString *hex = [self hexStringFromColor:overlayView.fillColor];
         

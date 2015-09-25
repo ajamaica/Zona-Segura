@@ -15,8 +15,22 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lauch" translatesAutoresizingMaskIntoConstraints="NO" id="pyk-TE-iQu">
+                                <rect key="frame" x="143" y="127" width="314" height="345"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="345" id="bmx-qX-uD9"/>
+                                    <constraint firstAttribute="width" constant="314" id="oe0-Ly-EAy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pyk-TE-iQu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7ga-Ty-lU6"/>
+                            <constraint firstItem="pyk-TE-iQu" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gS5-gk-vFB"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +38,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lauch" width="1024" height="1399"/>
+    </resources>
 </document>

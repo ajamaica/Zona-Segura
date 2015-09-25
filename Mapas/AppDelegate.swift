@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        Parse.enableLocalDatastore()
+        
+        // Initialize Parse.
+        Parse.setApplicationId("G918eVdpnRkxcmYSC4hUpJxOJkzo0nk4uPmDEioD",
+            clientKey: "yX9KAwZZ4JXxv5mBha4JFkHwQx4iGCRVlntYkd4W")
+        
+        // [Optional] Track statistics around application opens.
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         self.appereance()
         
