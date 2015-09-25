@@ -15,8 +15,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        self.appereance()
+        
         // Override point for customization after application launch.
         return true
+    }
+    
+    func appereance(){
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red:1.000, green:0.094, blue: 0.125, alpha: 1.000)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Helvetica-Light", size: 20)!]
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        //UILabel.appearance().font = UIFont(name: "Raleway-Medium", size: 17)
+        UITabBar.appearance().backgroundColor = UIColor(red:0.0, green:0.0, blue: 0.0, alpha: 0.2)
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().barTintColor = UIColor(red:0.0, green:0.0, blue: 0.0, alpha: 0.2)
+        
+        //UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Raleway-Medium", size: 12)!], forState: UIControlState.Normal)
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

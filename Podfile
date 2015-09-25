@@ -3,4 +3,6 @@ use_frameworks!
 
 target 'Mapas' do
 	pod 'KYDrawerController'
+    pod 'Parse'
+    pod 'ParseUI'
 end
