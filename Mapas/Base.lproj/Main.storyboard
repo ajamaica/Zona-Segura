@@ -23,8 +23,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="FwQ-rK-8Vf"/>
                                 </connections>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fuente : CNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aG3-8p-veo">
-                                <rect key="frame" x="263" y="507" width="75" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fuente : SESNSP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aG3-8p-veo">
+                                <rect key="frame" x="255" y="507" width="89" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="width" constant="275" id="Yvn-U5-BAq"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Tods"/>
+                                    <segment title="Todos"/>
                                     <segment title="Bajo"/>
                                     <segment title="Medio"/>
                                     <segment title="Alto"/>
