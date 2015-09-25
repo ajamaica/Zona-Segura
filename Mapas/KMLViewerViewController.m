@@ -57,7 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.valor = 0;
     
     if(self.nombre == nil){
         
@@ -154,6 +154,18 @@
 }
 
 
+- (NSString *)hexStringFromColor:(UIColor *)color {
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    
+    return [NSString stringWithFormat:@"#%02lX%02lX%02lX",
+            lroundf(r * 255),
+            lroundf(g * 255),
+            lroundf(b * 255)];
+}
 
 - (IBAction)didOpen:(id)sender {
     
@@ -170,7 +182,43 @@
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
-    return [kmlParser viewForOverlay:overlay];
+    
+    
+    if ([overlay isKindOfClass:[MKPolygon class]])
+    {
+        MKPolygonView *overlayView = [kmlParser viewForOverlay:overlay];
+        
+        NSLog(@"%@",[self hexStringFromColor:overlayView.fillColor]);
+        
+        NSString *hex = [self hexStringFromColor:overlayView.fillColor];
+        
+        if(self.valor == 1){
+            
+            if(![hex isEqualToString:@"#0D6D0C"] &&  ![hex isEqualToString:@"#AAD1B7"]){
+                return nil;
+            }
+            
+        }else if(self.valor == 2){
+            
+            if(![hex isEqualToString:@"#FFE20F"]){
+                return nil;
+            }
+            
+        }else if(self.valor == 3){
+            
+            if(![hex isEqualToString:@"#FF3101"] &&  ![hex isEqualToString:@"#FF5D58"]){
+                return nil;
+            }
+            
+        }
+        
+        //overlayView.fillColor      = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
+        overlayView.strokeColor    = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+        overlayView.lineWidth      = 2;
+        
+        return overlayView;
+    }
+    return nil;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -178,4 +226,11 @@
     return [kmlParser viewForAnnotation:annotation];
 }
 
+- (IBAction)valueChange:(id)sender {
+    
+    self.valor = self.segmented.selectedSegmentIndex;
+    
+    [map removeOverlays:[map overlays]];
+    [self agregaOverlays:self.nombre];
+}
 @end

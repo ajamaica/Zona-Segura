@@ -23,13 +23,40 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="FwQ-rK-8Vf"/>
                                 </connections>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fuente : CNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aG3-8p-veo">
+                                <rect key="frame" x="263" y="507" width="75" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uGE-cI-8BH">
+                                <rect key="frame" x="163" y="480" width="275" height="29"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="275" id="Yvn-U5-BAq"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Tods"/>
+                                    <segment title="Bajo"/>
+                                    <segment title="Medio"/>
+                                    <segment title="Alto"/>
+                                </segments>
+                                <connections>
+                                    <action selector="valueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="df7-kK-ZB8"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aG3-8p-veo" secondAttribute="bottom" constant="8" id="CeF-Cu-nS7"/>
+                            <constraint firstItem="uGE-cI-8BH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DaK-YS-7EJ"/>
                             <constraint firstItem="loI-66-tQ0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MB4-F8-b6G"/>
                             <constraint firstItem="loI-66-tQ0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Rt7-sz-bQc"/>
+                            <constraint firstItem="aG3-8p-veo" firstAttribute="top" secondItem="uGE-cI-8BH" secondAttribute="bottom" constant="6" id="Wxk-kD-lD4"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="loI-66-tQ0" secondAttribute="bottom" id="aci-Db-5KR"/>
+                            <constraint firstItem="aG3-8p-veo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cDz-4R-JQC"/>
                             <constraint firstAttribute="trailing" secondItem="loI-66-tQ0" secondAttribute="trailing" id="urh-Wo-Eyg"/>
                         </constraints>
                     </view>
@@ -42,6 +69,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="map" destination="loI-66-tQ0" id="eu6-GB-5x0"/>
+                        <outlet property="segmented" destination="uGE-cI-8BH" id="lIu-M4-Dan"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

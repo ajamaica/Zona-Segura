@@ -37,6 +37,7 @@ class DrawerTableViewController: UITableViewController {
             case 0:
                 viewController.title = "Total de Robos"
                 viewController.nombre = "mapaTotalRobos"
+                
             case 1:
                 viewController.title = "Total de Homicidios"
                 viewController.nombre = "mapaTotalHomicidios"

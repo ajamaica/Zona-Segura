@@ -57,7 +57,11 @@
     KMLParser *kmlParser;
 }
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmented;
 @property (strong,nonatomic) NSString *nombre;
+@property int valor;
+
+- (IBAction)valueChange:(id)sender;
 
 
 @end
