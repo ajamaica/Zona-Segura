@@ -14,6 +14,7 @@
 		062145061BB4F52200FF33E8 /* mapaTotalOtros.kml in Resources */ = {isa = PBXBuildFile; fileRef = 062145031BB4F52200FF33E8 /* mapaTotalOtros.kml */; settings = {ASSET_TAGS = (); }; };
 		062145071BB4F52200FF33E8 /* mapaTotalPatrimoniales.kml in Resources */ = {isa = PBXBuildFile; fileRef = 062145041BB4F52200FF33E8 /* mapaTotalPatrimoniales.kml */; settings = {ASSET_TAGS = (); }; };
 		0621450C1BB5101500FF33E8 /* EstadoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0621450B1BB5101500FF33E8 /* EstadoTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		062145121BB5882200FF33E8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 062145111BB5882200FF33E8 /* Social.framework */; };
 		06E17DBC1BB30FBC0017F274 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E17DBB1BB30FBC0017F274 /* AppDelegate.swift */; };
 		06E17DBE1BB30FBC0017F274 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E17DBD1BB30FBC0017F274 /* ViewController.swift */; };
 		06E17DC11BB30FBC0017F274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06E17DBF1BB30FBC0017F274 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		062145041BB4F52200FF33E8 /* mapaTotalPatrimoniales.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mapaTotalPatrimoniales.kml; sourceTree = "<group>"; };
 		0621450A1BB5101500FF33E8 /* EstadoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EstadoTableViewController.h; sourceTree = "<group>"; };
 		0621450B1BB5101500FF33E8 /* EstadoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EstadoTableViewController.m; sourceTree = "<group>"; };
+		062145111BB5882200FF33E8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		06E17DB81BB30FBC0017F274 /* Mapas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06E17DBB1BB30FBC0017F274 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06E17DBD1BB30FBC0017F274 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				062145121BB5882200FF33E8 /* Social.framework in Frameworks */,
 				9912C73B40A3A17BFE483578 /* Pods_Mapas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +208,7 @@
 		4909B77982AA8ABE1EDCAE82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				062145111BB5882200FF33E8 /* Social.framework */,
 				E4B58CE328334D2425B846BD /* Pods_Mapas.framework */,
 			);
 			name = Frameworks;

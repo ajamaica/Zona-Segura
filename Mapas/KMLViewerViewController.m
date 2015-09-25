@@ -49,6 +49,7 @@
 
 #import "KMLViewerViewController.h"
 @import KYDrawerController;
+@import Social;
 #import <Parse/Parse.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "EstadoTableViewController.h"
@@ -279,5 +280,38 @@
     
     [map removeOverlays:[map overlays]];
     [self agregaOverlays:self.nombre];
+}
+- (IBAction)share:(id)sender {
+    
+    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGContextRef ctx = CGBitmapContextCreate(nil, screenSize.width, screenSize.height, 8, 4*(int)screenSize.width, colorSpaceRef, kCGImageAlphaPremultipliedLast);
+    CGContextTranslateCTM(ctx, 0.0, screenSize.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+    
+    [(CALayer*)self.view.layer renderInContext:ctx];
+    
+    CGImageRef cgImage = CGBitmapContextCreateImage(ctx);
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    CGContextRelease(ctx);
+   //[UIImageJPEGRepresentation(image, 1.0) writeToFile:@"screen.jpg" atomically:NO];
+    
+    SLComposeViewController *tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [tweet setInitialText:@"Te compartimos datos de seguridad de tu estado. #ZonaSegura #Semanai"];
+    [tweet addImage:image];
+
+    [tweet setCompletionHandler:^(SLComposeViewControllerResult result)
+     {
+         if (result == SLComposeViewControllerResultCancelled)
+         {
+             NSLog(@"The user cancelled.");
+         }
+         else if (result == SLComposeViewControllerResultDone)
+         {
+             NSLog(@"The user sent the tweet");
+         }
+     }];
+    [self presentViewController:tweet animated:YES completion:nil];
 }
 @end

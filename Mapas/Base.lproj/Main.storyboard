@@ -67,6 +67,11 @@
                                 <action selector="didOpen:" destination="BYZ-38-t0r" id="m3z-Ez-Mf2"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="ZFw-W9-ORl">
+                            <connections>
+                                <action selector="share:" destination="BYZ-38-t0r" id="mLg-Ej-SAM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="map" destination="loI-66-tQ0" id="eu6-GB-5x0"/>

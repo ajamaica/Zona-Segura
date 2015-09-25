@@ -56,6 +56,7 @@
     IBOutlet MKMapView *map;
     KMLParser *kmlParser;
 }
+- (IBAction)share:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmented;
 @property (strong,nonatomic) NSString *nombre;
