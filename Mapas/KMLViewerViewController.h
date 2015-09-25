@@ -52,10 +52,13 @@
 
 #import "KMLParser.h"
 
-@interface KMLViewerViewController : UIViewController {
+@interface KMLViewerViewController : UIViewController <MKMapViewDelegate>{
     IBOutlet MKMapView *map;
     KMLParser *kmlParser;
 }
+
+@property (strong,nonatomic) NSString *nombre;
+
 
 @end
 

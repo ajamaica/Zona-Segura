@@ -48,30 +48,52 @@
  */
 
 #import "KMLViewerViewController.h"
+@import KYDrawerController;
 
-@implementation KMLViewerViewController
+@implementation KMLViewerViewController{
+    NSArray *overlays;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    
+    if(self.nombre == nil){
+        
+        self.nombre = @"mapaTotalRobos";
+    }
+    
+    [self agregaOverlays:self.nombre];
+}
+
+-(void) agregaOverlays:(NSString*) ruta {
     // Locate the path to the route.kml file in the application's bundle
     // and parse it with the KMLParser.
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Directorio de escuelas comunitarias publicas de nivel secundaria" ofType:@"kml"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:ruta ofType:@"kml"];
     NSURL *url = [NSURL fileURLWithPath:path];
     kmlParser = [[KMLParser alloc] initWithURL:url];
     [kmlParser parseKML];
     
     // Add all of the MKOverlay objects parsed from the KML file to the map.
-    NSArray *overlays = [kmlParser overlays];
-    [map addOverlays:overlays];
+    overlays = [kmlParser overlays];
     
-
+    for (id <MKOverlay> overlay in overlays) {
+        [map addOverlay:overlay];
+    }
+    
+    //[map addOverlays:overlays];
+    
+    [map addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)]];
+    
     
     
     // Add all of the MKAnnotation objects parsed from the KML file to the map.
     NSArray *annotations = [kmlParser points];
     [map addAnnotations:annotations];
+    
+    map.delegate = self;
+    
     
     // Walk the list of overlays and annotations and create a MKMapRect that
     // bounds all of them and store it into flyTo.
@@ -95,9 +117,49 @@
     }
     
     // Position the map so that all overlays and annotations are visible on screen.
-    map.visibleMapRect = flyTo;
+    //map.visibleMapRect = flyTo;
 }
 
+
+
+
+
+- (void)mapTapped:(UITapGestureRecognizer *)recognizer
+{
+    //[self performSegueWithIdentifier:@"mapa" sender:nil];
+    
+    MKMapView *mapView = (MKMapView *)recognizer.view;
+    id<MKOverlay> tappedOverlay = nil;
+    int i = 0;
+    for (id<MKOverlay> overlay in mapView.overlays)
+    {
+        MKOverlayView *view = [mapView viewForOverlay:overlay];
+        if (view)
+        {
+            // Get view frame rect in the mapView's coordinate system
+            CGRect viewFrameInMapView = [view.superview convertRect:view.frame toView:mapView];
+            // Get touch point in the mapView's coordinate system
+            CGPoint point = [recognizer locationInView:mapView];
+            // Check if the touch is within the view bounds
+            if (CGRectContainsPoint(viewFrameInMapView, point))
+            {
+                i++;
+                tappedOverlay = overlay;
+                break;
+            }
+        }
+    }
+    int index = [overlays indexOfObject:tappedOverlay];
+    NSLog(@"Tapped view: %@", [mapView viewForOverlay:tappedOverlay]);
+}
+
+
+
+- (IBAction)didOpen:(id)sender {
+    
+    KYDrawerController *drawerController = (KYDrawerController *) self.navigationController.parentViewController;
+    [drawerController setDrawerState:DrawerStateOpened animated:YES];
+}
 
 - (void)viewDidUnload
 {
